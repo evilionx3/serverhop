@@ -84,7 +84,7 @@ for i = 1, #sounds do
         if real == true then
             break
         else    
-        real = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/evilionx3/serverhop/main.lua"))()]]
+        real = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/evilionx3/serverhop/refs/heads/main/main.lua"))()]]
             queue_on_teleport(real)
             NotificationLibrary:SendNotification("Error", "No server found, serverhopping :(", 3)
             Teleport()
