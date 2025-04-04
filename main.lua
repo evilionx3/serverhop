@@ -69,11 +69,11 @@ end
 
 
 local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
-gamevalue = game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedInfo").CurrentStage.Value
+gamevalue = game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedInfo"):WaitForChild("CurrentStage").Value
 real = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/evilionx3/serverhop/refs/heads/main/main.lua"))()]]
 if gamevalue == "2" then
     NotificationLibrary:SendNotification("Success", "Found server!! :D", 3)
-   
+    
 else
 
     queue_on_teleport(real)
