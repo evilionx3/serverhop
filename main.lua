@@ -1,7 +1,3 @@
-
-
-
-
 local PlaceID = game.PlaceId
 local AllIDs = {}
 local foundAnything = ""
@@ -17,9 +13,9 @@ end
 function TPReturner()
     local Site;
     if foundAnything == "" then
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Dec&limit=100'))
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
     else
-        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Dec&limit=100&cursor=' .. foundAnything))
+        Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
     end
     local ID = ""
     if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
@@ -71,23 +67,17 @@ function Teleport()
     end
 end
 
-real = false
+
 local NotificationLibrary = loadstring(game:HttpGet("https://raw.githubusercontent.com/IceMinisterq/Notification-Library/Main/Library.lua"))()
-sounds = game:GetDescendants()
-for i = 1, #sounds do
-    if real == false and sounds[i]:IsA("Sound") and sounds[i].SoundId == "rbxassetid://17208533788" and sounds[i].Playing == true then
-        NotificationLibrary:SendNotification("Success", "Found a server!! :D", 3)
-        real = true
-        
-        break
-    else
-        if real == true then
-            break
-        else    
-        real = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/evilionx3/serverhop/refs/heads/main/main.lua"))()]]
-            queue_on_teleport(real)
-            NotificationLibrary:SendNotification("Error", "No server found, serverhopping :(", 3)
-            Teleport()
-        end
-    end
+gamevalue = game:GetService("ReplicatedStorage"):WaitForChild("ReplicatedInfo").CurrentStage.Value
+real = [[loadstring(game:HttpGet("https://raw.githubusercontent.com/evilionx3/serverhop/refs/heads/main/main.lua"))()]]
+if gamevalue == "2" then
+    NotificationLibrary:SendNotification("Success", "Found server!! :D", 3)
+   
+else
+
+    queue_on_teleport(real)
+    NotificationLibrary:SendNotification("Error", "Server isnt currently in runway, serverhopping", 3)
+
+    Teleport()
 end
