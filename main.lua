@@ -50,7 +50,7 @@ function TPReturner()
                     wait()
                     game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
                 end)
-                wait(4)
+                wait(2.5)
             end
         end
     end
@@ -77,7 +77,7 @@ if gamevalue == "2" then
 else
 
     queue_on_teleport(real)
-    NotificationLibrary:SendNotification("Error", "Server isnt currently in runway, serverhopping", 3)
+    NotificationLibrary:SendNotification("Error", "Server isnt currently in runway, serverhopping", 9999)
 
     Teleport()
 end
